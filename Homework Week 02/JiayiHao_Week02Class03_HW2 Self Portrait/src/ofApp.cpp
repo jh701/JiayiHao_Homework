@@ -22,7 +22,7 @@ void ofApp::draw(){
     ofSetColor(229,203,144); //draws face
     ofDrawEllipse(center, 400, 370);
     
-    ofSetColor(0, 0, 0); //draws "eyes"
+    ofSetColor(255, 255, 255); //draws "eyes"
     ofSetLineWidth(8);
     ofDrawLine(ofGetWidth()/2 + 90, 285, ofGetWidth()/2 + 90, 310);
     ofDrawLine(ofGetWidth()/2 + -90, 285, ofGetWidth()/2 - 90, 310);
