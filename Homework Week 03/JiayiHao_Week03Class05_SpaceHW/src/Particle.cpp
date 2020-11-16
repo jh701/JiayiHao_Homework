@@ -1,9 +1,3 @@
-//
-//  Particle.cpp
-//  wk06_particle_system
-//
-//  Created by Tyler Henry on 10/2/18.
-//
 
 #include "Particle.hpp"
 

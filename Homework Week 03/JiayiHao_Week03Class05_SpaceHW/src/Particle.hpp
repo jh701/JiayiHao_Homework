@@ -1,10 +1,3 @@
-//
-//  Particle.hpp
-//  wk06_particle_system
-//
-//  Created by Tyler Henry on 10/2/18.
-//
-
 #pragma once
 #include "ofMain.h"
 
@@ -27,3 +20,4 @@ public:
     ofImage spacecraft;
     
 };
+

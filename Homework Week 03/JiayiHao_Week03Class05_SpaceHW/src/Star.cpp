@@ -1,10 +1,3 @@
-//
-//  Star.cpp
-//  02_attraction
-//
-//  Created by Sunny Hao on 11/16/20.
-//
-
 #include "Star.hpp"
 
 Star::Star(){
