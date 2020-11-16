@@ -32,7 +32,7 @@ void ofApp::setup(){
     images.push_back(d);
     images.push_back(e);
     
-    for (int i = 0; i < 5; i++){
+    for (int i = 0; i < 5; i++){   //create planets here
         Star newStar = Star();
         stars.push_back(newStar);
     }
@@ -40,19 +40,20 @@ void ofApp::setup(){
     for (int i = 0; i < 5; i++){
         stars[i].setup(120 + i * 80 - i * 3);
     }
-   // star1.setup(200);
     
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 
-    
+    //setting up the spacecraft
     float one = stars[2].xpos;
     float two = stars[2].ypos;
     glm::vec2 mousePos = glm::vec2(one, two);
     glm::vec2 diff2 = mousePos - spaceship.pos;
-    // attraction force (push in the direction of target)
+    
+    
+    // setting up the interactive asteriods that are attracted to earth
     spaceship.addForce(diff2 * 0.01);
     spaceship.addDampingForce(0.005);
     spaceship.update();
@@ -63,14 +64,13 @@ void ofApp::update(){
         glm::vec2 dir = mousePos1 - as[i].pos;
         float distance = glm::length(dir);
                 
-                if (distance > 0 ) {         // avoid dividing by 0!
-                    glm::vec2 normalizedDir = dir / distance;      // normalize to get length to 1
+                if (distance > 0 ) {
+                    glm::vec2 normalizedDir = dir / distance;
                     if (distance < 1000) {
                         attraction = normalizedDir;}}
-                        
-                        as[i].addForce(10*attraction);
-        as[i].addDampingForce(0.05);
-        as[i].update();
+                            as[i].addForce(10*attraction);
+                            as[i].addDampingForce(0.05);
+                            as[i].update();
     }
     
     for (int i = 0; i < 5; i++){
@@ -84,33 +84,34 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    //draw sun
     image.draw( 0, 0, ofGetWidth(), ofGetHeight());
     sun.load("images/sun.png");
     sun.draw(ofGetWidth()/2 - 70,ofGetHeight()/2 - 70, 140, 140);
-    
+   
+    //write instructions
     ofDrawBitmapString("Press Mouse for Moon and s Key for Danger!", ofGetWidth()/2 , ofGetHeight()/2+150);
     
+    //draw spacecraft
     spaceship.drawSpacecraft();
     
+    //draw asteriods if s key is hit
     if (hit){
     for (int i = 0; i < 9; i++) {
         as[i].draw();
     }}
     
+    //draw stars
     for (int i = 0; i < 5; i++){
         stars[i].draw();
     }
-   // star1.draw();
-   // ofPoint location = ofPoint(star1.xpos, star1.ypos);
-   // a.draw(location);
-    
     a.draw(stars[1].xpos - 40, stars[1].ypos - 40 , 80, 80);
     b.draw(stars[2].xpos - 50, stars[2].ypos - 50 , 100, 100);
     c.draw(stars[3].xpos - 50, stars[3].ypos - 50 , 100, 100);
     d.draw(stars[4].xpos - 60, stars[4].ypos - 60 , 120, 120);
     e.draw(stars[0].xpos - 30, stars[0].ypos - 30 , 60, 60);
 
-  
+    //draw moon
     for( int i = 0; i < moons.size(); i++){
         moons[i].drawMoon();
     }
