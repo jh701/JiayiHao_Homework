@@ -43,7 +43,6 @@ void ofApp::draw(){
     
     ofPopMatrix();
     
-    if(hit){
     //Set a gradient background from light brown to brown!
     ofBackgroundGradient( ofColor( 157, 127, 97 ), ofColor( 66, 40, 14 ) );
     light.setPosition(glm::vec3(0, 0, 800));
@@ -59,7 +58,6 @@ void ofApp::draw(){
     mesh.draw();
     
     ofPopMatrix();
-            }
 }
 
 //--------------------------------------------------------------
