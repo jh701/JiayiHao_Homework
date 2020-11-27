@@ -39,7 +39,7 @@ void ofApp::draw(){
     ofSetColor( 255, 255, 255);
 
     ofDrawBitmapString("Press ‘2’ for bent growth", 10 , 30);
-    ofDrawBitmapString("Press ‘1’ to start program /shift to linear growth", 10 , 20);
+    ofDrawBitmapString("Press ‘1’ for linear growth", 10 , 20);
     
     ofPopMatrix();
     
