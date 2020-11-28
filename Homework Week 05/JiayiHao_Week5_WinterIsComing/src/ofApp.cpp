@@ -79,7 +79,6 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-        ofSetColor(255, 255, 255);
         ofDrawBitmapString("Winter is Coming: Press ‘1’ for SNOW STORM", 10 , 20);
         
         ofBackgroundGradient(ofColor(80, 70, 70), ofColor(0, 0, 0), OF_GRADIENT_CIRCULAR);
