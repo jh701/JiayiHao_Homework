@@ -81,7 +81,7 @@ void ofApp::update(){
 void ofApp::draw(){
         ofBackgroundGradient(ofColor(80, 70, 70), ofColor(0, 0, 0), OF_GRADIENT_CIRCULAR);
         ofDrawBitmapString("Winter is Coming: Press ‘1’ for SNOW STORM", 10 , 20);
-        ofDrawBitmapString("EasyCam installed", 10 , 20);
+        ofDrawBitmapString("EasyCam installed", 10 , 30);
 
         Cam.begin();
                ofPushMatrix();
