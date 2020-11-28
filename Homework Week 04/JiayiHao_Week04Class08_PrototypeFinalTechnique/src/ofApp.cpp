@@ -1,7 +1,7 @@
 
 #include "ofApp.h"
 
-    float Rad = ofRandom(15, 25);      //Raduis of ea
+    float Rad = ofRandom(15, 25);      //Raduis of each circle
     float circleStep = 1;        //Step size for circle motion
     int circleN = 25;             //Number of points on the circle
 
@@ -99,8 +99,6 @@ void ofApp::drawVineStraight( ofMesh &mesh ){
         float angle = float(i) / circleN * TWO_PI;
         float x = Rad * cos( angle );
         float y = Rad * sin( angle );
-        //We would like to distort this point
-        //to make the knot's surface embossed
         float distort = ofNoise( x * 0.2, y * 0.2, time * 0.2 + 30 );
         distort = ofMap( distort, 0.2, 0.8, 0.8, 1.2 );
         x *= distort;
@@ -113,14 +111,13 @@ void ofApp::drawVineStraight( ofMesh &mesh ){
 
     //Add the triangles
     int base = mesh.getNumVertices() - 2 * circleN;
-    if ( base >= 0 ) {    //Check if it is not the first step
-        //and we really need to add the triangles
+    if ( base >= 0 ) {
         for (int i=0; i<circleN; i++) {
             int a = base + i;
             int b = base + (i + 1) % circleN;
             int c = circleN  + a;
             int d = circleN  + b;
-            mesh.addTriangle( a, b, d );    //Clock-wise
+            mesh.addTriangle( a, b, d );
             mesh.addTriangle( a, d, c );
         }
         setNormals(mesh);
@@ -140,10 +137,10 @@ void setNormals( ofMesh &mesh ){
 
     for (int t=0; t<nT; t++) {
 
-        //Get indices of the triangle t
-        int i1 = mesh.getIndex( 3 * t );
-        int i2 = mesh.getIndex( 3 * t + 1 );
-        int i3 = mesh.getIndex( 3 * t + 2 );
+        //Get indices of the triangle
+            int i1 = mesh.getIndex( 3 * t );
+            int i2 = mesh.getIndex( 3 * t + 1 );
+            int i3 = mesh.getIndex( 3 * t + 2 );
 
         //Get vertices of the triangle
             const glm::vec3 &v1 = mesh.getVertex( i1 );
@@ -151,11 +148,11 @@ void setNormals( ofMesh &mesh ){
             const glm::vec3 &v3 = mesh.getVertex( i3 );
 
         //Compute the triangle's normal
-        glm::vec3 dir = glm::normalize(glm::cross( v2 - v1,  v3 - v1 ));
-           
-        norm[ i1 ] += dir;
-        norm[ i2 ] += dir;
-        norm[ i3 ] += dir;
+            glm::vec3 dir = glm::normalize(glm::cross( v2 - v1,  v3 - v1 ));
+               
+            norm[ i1 ] += dir;
+            norm[ i2 ] += dir;
+            norm[ i3 ] += dir;
     }
 
     //Normalize the normal's length
@@ -174,7 +171,7 @@ void ofApp::drawVineCircular( ofMesh &mesh ){
     float time = ofGetElapsedTimef();    //Time
 
     //Parameters – twisting and rotating angles and color
-    float twistAngle = 0.1 * ofSignedNoise( time * 0.3 + 332.4 );
+    float twistAngle = 0.1 * ofSignedNoise( time * 0.3 + 300 );
 
     float rotateAngle = 0.02;
     float t = ofGetElapsedTimef();
@@ -185,7 +182,6 @@ void ofApp::drawVineCircular( ofMesh &mesh ){
 
     
     ofFloatColor color (v, b, n);
-   // ofFloatColor color (0, ofRandom(180,255), ofRandom(0,100));
     color.setSaturation( 1.0 );
 
     //Rotate the coordinate system of the circle
